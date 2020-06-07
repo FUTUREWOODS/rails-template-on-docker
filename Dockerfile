@@ -9,6 +9,7 @@ RUN apk add --update build-base\
   && rm -rf /var/cache/apk/*
 
 WORKDIR /usr/local/web
+RUN gem install rails
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN bundle install

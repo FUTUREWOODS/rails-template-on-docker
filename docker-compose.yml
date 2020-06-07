@@ -29,7 +29,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./usr/local/web
+      - .:/usr/local/web
       - public-data:/usr/local/web
 volumes:
   public-data:
