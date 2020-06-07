@@ -30,7 +30,7 @@ services:
       - 3000:3000
     volumes:
       - .:/usr/local/web
-      - public-data:/usr/local/web
+      - public-data:/usr/local/web/public
 volumes:
   public-data:
   mysql-data:
