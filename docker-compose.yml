@@ -1,0 +1,37 @@
+version: "3.3"
+services: 
+  proxy:
+    build:
+      context: proxy
+      dockerfile: Dockerfile
+    environment: 
+      - PROXY_PASS=web:3000
+    ports:
+      - 80:80
+  mysql:
+    image: mysql:5.7.30
+    container_name: product-mysql
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: FWproduct-prj3
+    ports:
+      - 3306:3306
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: product_web
+    env_file:
+      - .env
+    command: 
+      - bin/rails s -p 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - ./usr/local/web
+      - public-data:/usr/local/web
+volumes:
+  public-data:
+  mysql-data:
+    driver: local
